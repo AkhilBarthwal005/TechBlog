@@ -102,7 +102,7 @@
                             });
                         }
                         else{
-                            swal(data,"","error");
+                           swal(data,"","error");
                         }
 
                     },
