@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.mysql.cj.Session" %>
+<%@ page import="com.tech.blog.techblog.entity.Message" %><%--
   Created by IntelliJ IDEA.
   User: Anjali Pandey
   Date: 20-07-2022
@@ -25,6 +26,20 @@
                 <div class="col-md-4 offset-md-4">
                     <div class="card">
                         <div class="card-header main-theme text-white text-center"><span class="m-2"><i class="fa-solid fa-user fa-2x"></i></span><h4>Login</h4></div>
+
+                        <%
+                            Message msg = (Message) session.getAttribute("msg");
+                            if(msg!=null){ %>
+
+                        <div class="alert <%= msg.getCssClass()%> alert-dismissible fade show" role="alert">
+                           <%=msg.getContent()%>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                          <%
+                            session.removeAttribute("msg");
+                            }
+                        %>
                         <div class="card-body">
                             <form action="login-servlet" method="post">
                                 <div class="mb-3">

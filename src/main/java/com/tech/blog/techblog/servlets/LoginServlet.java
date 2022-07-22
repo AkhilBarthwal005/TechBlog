@@ -1,6 +1,7 @@
 package com.tech.blog.techblog.servlets;
 
 import com.tech.blog.techblog.dao.UserDAO;
+import com.tech.blog.techblog.entity.Message;
 import com.tech.blog.techblog.entity.User;
 import com.tech.blog.techblog.helper.ConnectionProvider;
 import jakarta.servlet.ServletException;
@@ -27,7 +28,11 @@ public class LoginServlet extends HttpServlet {
         User user = userDAO.getUserWithEmailAndPassword(email, password);
 
         if(user == null){
-            out.println("Invalid Credential");
+//            out.println("Invalid Credential");
+            Message message = new Message("Invalid Credential","error","alert-danger");
+            HttpSession session = req.getSession();
+            session.setAttribute("msg",message);
+            resp.sendRedirect("login.jsp");
             return;
         }
         HttpSession session = req.getSession();
