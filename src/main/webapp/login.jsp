@@ -26,19 +26,15 @@
                     <div class="card">
                         <div class="card-header main-theme text-white text-center"><span class="m-2"><i class="fa-solid fa-user fa-2x"></i></span><h4>Login</h4></div>
                         <div class="card-body">
-                            <form>
+                            <form action="login-servlet" method="post">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label"><span class="mx-2"><i class="fa-solid fa-envelope"></i></span>Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label"><span class="mx-2"><i class="fa-solid fa-key"></i></span>Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>

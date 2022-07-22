@@ -1,2 +1,38 @@
-package com.tech.blog.techblog.servlets;public class LoginServlet {
+package com.tech.blog.techblog.servlets;
+
+import com.tech.blog.techblog.dao.UserDAO;
+import com.tech.blog.techblog.entity.User;
+import com.tech.blog.techblog.helper.ConnectionProvider;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet(name="LoginServlet", value = "/login-servlet")
+public class LoginServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+
+        UserDAO userDAO = new UserDAO(ConnectionProvider.getConnection());
+        User user = userDAO.getUserWithEmailAndPassword(email, password);
+
+        if(user == null){
+            out.println("Invalid Credential");
+            return;
+        }
+        HttpSession session = req.getSession();
+        session.setAttribute("currentUser",user);
+        resp.sendRedirect("profile.jsp");
+
+    }
 }
