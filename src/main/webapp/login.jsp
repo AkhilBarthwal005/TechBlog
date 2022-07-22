@@ -20,7 +20,7 @@
 </head>
 <body>
     <%@include file="navbar.jsp"%>
-    <main class="d-flex align-items-center main-theme zic-zack-border" style="height: 75vh">
+    <main class="d-flex align-items-center main-theme zic-zack-border" style="height: 80vh">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-4">
