@@ -88,4 +88,22 @@ public class UserDAO {
         }
         return user;
     }
+
+    public boolean UpdateUserDetails(User user){
+        boolean result = false;
+        try{
+            String query = "update user set username=? , email=?, profile=? where id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,user.getUserName());
+            preparedStatement.setString(2,user.getEmail());
+            preparedStatement.setString(3,user.getProfile());
+            preparedStatement.setInt(4,user.getId());
+            // saving user to database...
+            int row = preparedStatement.executeUpdate();
+            result = row != 0;
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return result;
+    }
 }
