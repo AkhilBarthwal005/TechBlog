@@ -53,6 +53,10 @@
                                 <th>Gender:</th>
                                 <td><%=user.getGender()%></td>
                             </tr>
+                            <tr>
+                                <th>Register on:</th>
+                                <td><%=user.getDatetime()%></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
