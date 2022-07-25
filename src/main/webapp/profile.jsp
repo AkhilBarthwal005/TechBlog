@@ -65,7 +65,8 @@
 <%--                    Profile Edit --%>
                     <div class="container" id="profile-edit" style="display: none">
                         <h3 class="text-center">Please Edit Carefully</h3>
-                        <form action="EditServlet" method="post">
+<%--                        enctype help in sending image by form to servlet--%>
+                        <form action="edit-servlet" method="post" enctype="multipart/form-data">
                             <table class="table table-hover">
                                 <tr>
                                     <th>Id:</th>
@@ -85,13 +86,13 @@
                                 </tr>
                                 <tr>
                                     <th>Update Profile:</th>
-                                    <td><input type="file" class="form-control" name="profile"></td>
+                                    <td><input type="file" class="form-control" name="updatedProfile"></td>
                                 </tr>
                             </table>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-outline-primary">Save</button>
+                            </div>
                         </form>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Save</button>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
