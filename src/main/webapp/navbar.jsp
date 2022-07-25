@@ -57,7 +57,7 @@
             </ul>
             <ul class=" navbar-nav me-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.jsp" tabindex="-1" aria-disabled="true"><span style="margin-right: 4px"><i class="fa-solid fa-user-circle"></i></span><%= user.getUserName() %></a>
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" data-bs-toggle="modal" data-bs-target="#profileModal"><span style="margin-right: 4px"><i class="fa-solid fa-user-circle"></i></span><%= user.getUserName() %></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout-servlet" tabindex="-1" aria-disabled="true"><span style="margin-right: 4px"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>Logout</a>
