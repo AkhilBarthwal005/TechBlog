@@ -1,6 +1,12 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.tech.blog.techblog.helper.ConnectionProvider" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="com.tech.blog.techblog.entity.Message" %>
+
+<%
+    User currentUser = (User)session.getAttribute("currentUser");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +22,34 @@
 <body>
 <%--    NavBar--%>
     <%@include file="navbar.jsp"%>
+<%--                   alert Message--%>
+<%
+    Message msg = (Message) session.getAttribute("msg");
+    if(msg!=null){ %>
+
+<div class="alert <%= msg.getCssClass()%> alert-dismissible fade show" role="alert" style="margin-bottom: 0">
+    <%=msg.getContent()%>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<%
+        session.removeAttribute("msg");
+    }
+%>
     <div class="container-fluid p-0 m-0 zic-zack-border">
         <section class="py-3 main-theme text-white">
             <div class="container">
                 <h1 class="display-3">Welcome to Tech Blog</h1>
                 <p>Welcome to Technical Blog, World of Technology</p>
                 <p>Technology is the result of accumulated knowledge and application of skills, methods, and processes used in industrial production and scientific research. Technology is embedded in the operation of all machines, with or without detailed knowledge of their function, for the intended purpose of an organization. The technologies of society consist of what is known as systems. Systems operate by obtaining an input, altering this input through what is known as a process, and then producing an outcome that achieves the intended purpose of the system.</p>
+                <%
+                    if(currentUser == null){
+                %>
                 <a href="signUp.jsp" class="btn btn-outline-light btn-lg m-2"><span class="mx-2"><i class="fa-solid fa-user-plus"></i></span>Start ! Free</a>
                 <a href="login.jsp" class="btn btn-outline-light btn-lg"><span class="mx-2"><i class="fa-solid fa-user fa-spin"></i></span>Login</a>
+                <%
+                    }
+                %>
             </div>
             <br>
         </section>

@@ -26,18 +26,20 @@ public class LoginServlet extends HttpServlet {
 
         UserDAO userDAO = new UserDAO(ConnectionProvider.getConnection());
         User user = userDAO.getUserWithEmailAndPassword(email, password);
+//        getting session
+        HttpSession session = req.getSession();
 
         if(user == null){
 //            out.println("Invalid Credential");
             Message message = new Message("Invalid Credential","error","alert-danger");
-            HttpSession session = req.getSession();
             session.setAttribute("msg",message);
             resp.sendRedirect("login.jsp");
             return;
         }
-        HttpSession session = req.getSession();
+        Message message = new Message("Login Successfully","success","alert-success");
+        session.setAttribute("msg",message);
         session.setAttribute("currentUser",user);
-        resp.sendRedirect("profile.jsp");
+        resp.sendRedirect("index.jsp");
 
     }
 }
