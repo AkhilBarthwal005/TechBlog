@@ -1,7 +1,7 @@
 package com.tech.blog.techblog.servlets;
 
 import com.tech.blog.techblog.dao.UserDAO;
-import com.tech.blog.techblog.entity.Message;
+import com.tech.blog.techblog.helper.Message;
 import com.tech.blog.techblog.entity.User;
 import com.tech.blog.techblog.helper.ConnectionProvider;
 import jakarta.servlet.ServletException;

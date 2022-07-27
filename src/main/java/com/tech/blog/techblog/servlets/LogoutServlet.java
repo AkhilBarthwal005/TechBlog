@@ -1,6 +1,6 @@
 package com.tech.blog.techblog.servlets;
 
-import com.tech.blog.techblog.entity.Message;
+import com.tech.blog.techblog.helper.Message;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

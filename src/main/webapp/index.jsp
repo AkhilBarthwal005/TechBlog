@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="com.tech.blog.techblog.helper.ConnectionProvider" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import="com.tech.blog.techblog.entity.Message" %>
+<%@page import="com.tech.blog.techblog.helper.Message" %>
 
 <%
     User currentUser = (User)session.getAttribute("currentUser");

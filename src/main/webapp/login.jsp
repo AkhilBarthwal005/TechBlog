@@ -1,5 +1,5 @@
 <%@ page import="com.mysql.cj.Session" %>
-<%@ page import="com.tech.blog.techblog.entity.Message" %><%--
+<%@ page import="com.tech.blog.techblog.helper.Message" %><%--
   Created by IntelliJ IDEA.
   User: Anjali Pandey
   Date: 20-07-2022
