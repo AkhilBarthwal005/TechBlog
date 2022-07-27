@@ -2,6 +2,9 @@
 <%@ page import="com.tech.blog.techblog.helper.ConnectionProvider" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="com.tech.blog.techblog.helper.Message" %>
+<%@ page import="com.tech.blog.techblog.dao.CategoryDAO" %>
+<%@ page import="com.tech.blog.techblog.entity.Category" %>
+<%@ page import="java.util.List" %>
 
 <%
     User currentUser = (User)session.getAttribute("currentUser");
@@ -57,69 +60,48 @@
 
 <%--    Cards--%>
     <div class="container mt-3">
+<%--        Fetching categories from database--%>
+        <%
+            CategoryDAO categoryDAO = new CategoryDAO(ConnectionProvider.getConnection());
+            List<Category> list = categoryDAO.getAllCategoryDetails();
+        %>
         <div class="row my-2">
+            <%
+                for(int i=0;i<3;i++){
+
+            %>
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="./img/categoriesImages/<%=list.get(i).getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title"><%=list.get(i).getName()%></h5>
+                        <p class="card-text"><%=list.get(i).getDescription()%></p>
                         <a href="#" class="btn main-theme text-white">Read more</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn main-theme text-white">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn main-theme text-white">Read more</a>
-                    </div>
-                </div>
-            </div>
+            <%
+                }
+            %>
         </div>
         <div class="row my-2">
+            <%
+                for(int i=3;i<list.size();i++){
+
+            %>
             <div class="col-md-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="./img/categoriesImages/<%=list.get(i).getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title"><%=list.get(i).getName()%></h5>
+                        <p class="card-text"><%=list.get(i).getDescription()%></p>
                         <a href="#" class="btn main-theme text-white">Read more</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn main-theme text-white">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn main-theme text-white">Read more</a>
-                    </div>
-                </div>
-            </div>
+            <%
+                }
+            %>
         </div>
     </div>
 <%--    JavaScript--%>

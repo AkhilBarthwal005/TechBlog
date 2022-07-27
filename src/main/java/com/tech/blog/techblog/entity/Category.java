@@ -4,19 +4,22 @@ public class Category {
     private int cId;
     private String name;
     private String description;
+    private  String image;
 
     public Category() {
     }
 
-    public Category(int cId, String name, String description) {
+    public Category(int cId, String name, String description,String image) {
         this.cId = cId;
         this.name = name;
         this.description = description;
+        this.image = image;
     }
 
-    public Category(String name, String description) {
+    public Category(String name, String description,String image) {
         this.name = name;
         this.description = description;
+        this.image = image;
     }
 
     public int getCId() {
@@ -41,5 +44,13 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
