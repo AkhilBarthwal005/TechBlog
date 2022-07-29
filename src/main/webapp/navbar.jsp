@@ -90,9 +90,9 @@
                 <div class="text-center">
 <%--                    Profile-photo--%>
                     <%
-                        if(user.getProfile().equals("defualt.png")){
+                        if(user.getProfile().equals("default.png")){
                     %>
-                    <img src="./ProfilePhoto/default<%= user.getProfile()%>" class="image-fluid rounded-circle" width="100%" style="max-width: 150px">
+                    <img src="./ProfilePhoto/default/<%= user.getProfile()%>" class="image-fluid rounded-circle" width="100%" style="max-width: 150px">
                     <%
                         }
                         else{

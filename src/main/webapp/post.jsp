@@ -40,15 +40,15 @@
                    <div class="card mt-4">
                        <div class="card-header main-theme text-white text-center"><h3>Add <i class="fa-solid fa-blog fa-2x"></i>log<h3></div>
                        <div class="card-body">
-                           <form>
+                           <form action="add-post" method="post" id="add-post">
                                <div class="mb-3">
-                                   <select class="form-select" name="category" aria-label="Default select example">
+                                   <select class="form-select" name="catId" aria-label="Default select example">
                                        <option selected disabled>Select Category</option>
                                        <%
                                            for (Category category:
                                                 list) {
                                        %>
-                                       <option value="<%=category.getName()%>"><%=category.getName()%></option>
+                                       <option value="<%=category.getCId()%>"><%=category.getName()%></option>
                                        <%
                                            }
                                        %>
@@ -71,7 +71,7 @@
                                    <input type="file" class="form-control" id="image" name="image" rows="5" cols="10" placeholder="Add an Image for a Blog" style="resize: none"/>
                                </div>
                                <div class="text-center">
-                                   <button type="submit" class="btn btn-primary">Submit</button>
+                                   <button type="submit" class="btn btn-primary">Post <span class="ms-1"><i class="fa-solid fa-circle-arrow-right"></i></span></button>
                                </div>
                            </form>
                        </div>
@@ -84,5 +84,26 @@
     <script src="https://kit.fontawesome.com/dd3a88d1db.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function (){
+            $("#add-post").on("submit",function (event){
+                event.preventDefault();
+                let formData = new FormData(this);
+                $.ajax({
+                    url : "add-post",
+                    method: "post",
+                    data : formData,
+                    success : function (data,textStatus,jqXHR) {
+                        console.log(data);
+                    },
+                    error : function (extStatus,jqXHR,errorThrown) {
+
+                    },
+                    processData : false,
+                    contentType : false
+                })
+            })
+        })
+    </script>
 </body>
 </html>

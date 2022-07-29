@@ -24,12 +24,11 @@ public class Post {
         this.userId = userId;
     }
 
-    public Post(String title, String content, String code, String image, String postDate, int catId, int userId) {
+    public Post(String title, String content, String code, String image, int catId, int userId) {
         this.title = title;
         this.content = content;
         this.code = code;
         this.image = image;
-        this.postDate = postDate;
         this.catId = catId;
         this.userId = userId;
     }
