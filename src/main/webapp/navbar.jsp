@@ -54,6 +54,9 @@
                     }
                     else{
                 %>
+            <li class="nav-item">
+                <a class="btn btn-outline-light rounded-pill" href="post.jsp" tabindex="-1" aria-disabled="true"><span style="margin-right: 4px"><i class="fa-solid fa-signs-post"></i></span>Post a Blog</a>
+            </li>
             </ul>
             <ul class=" navbar-nav me-right">
                 <li class="nav-item">
