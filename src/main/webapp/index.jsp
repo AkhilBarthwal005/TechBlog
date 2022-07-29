@@ -65,7 +65,7 @@
             CategoryDAO categoryDAO = new CategoryDAO(ConnectionProvider.getConnection());
             List<Category> list = categoryDAO.getAllCategoryDetails();
         %>
-        <div class="row my-2">
+        <div class="row my-4">
             <%
                 for(int i=0;i<3;i++){
 
@@ -75,7 +75,7 @@
                     <img src="./img/categoriesImages/<%=list.get(i).getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
                     <div class="card-body">
                         <h5 class="card-title"><%=list.get(i).getName()%></h5>
-                        <p class="card-text"><%=list.get(i).getDescription()%></p>
+                        <p class="card-text"><%=list.get(i).getDescription().substring(0,135)%>...</p>
                         <a href="#" class="btn main-theme text-white">Read more</a>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                 }
             %>
         </div>
-        <div class="row my-2">
+        <div class="row my-4">
             <%
                 for(int i=3;i<list.size();i++){
 
@@ -94,7 +94,7 @@
                     <img src="./img/categoriesImages/<%=list.get(i).getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
                     <div class="card-body">
                         <h5 class="card-title"><%=list.get(i).getName()%></h5>
-                        <p class="card-text"><%=list.get(i).getDescription()%></p>
+                        <p class="card-text"><%=list.get(i).getDescription().substring(0,150)%>...</p>
                         <a href="#" class="btn main-theme text-white">Read more</a>
                     </div>
                 </div>
