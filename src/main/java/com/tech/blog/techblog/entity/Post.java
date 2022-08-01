@@ -1,19 +1,21 @@
 package com.tech.blog.techblog.entity;
 
+import java.sql.Timestamp;
+
 public class Post {
     private int pId;
     private String title;
     private String content;
     private String code;
     private String image;
-    private String postDate;
+    private Timestamp postDate;
     private int catId;
     private int userId;
 
     public Post() {
     }
 
-    public Post(int pId, String title, String content, String code, String image, String postDate, int catId, int userId) {
+    public Post(int pId, String title, String content, String code, String image, Timestamp postDate, int catId, int userId) {
         this.pId = pId;
         this.title = title;
         this.content = content;
@@ -73,11 +75,11 @@ public class Post {
         this.image = image;
     }
 
-    public String getPostDate() {
+    public Timestamp getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(String postDate) {
+    public void setPostDate(Timestamp postDate) {
         this.postDate = postDate;
     }
 

@@ -33,4 +33,55 @@ public class PostDAO {
         }
         return  result;
     }
+
+    public List<Post> getAllPost(){
+        List<Post> posts = new ArrayList<>();
+        try{
+            String query = "select * from post order by pId desc";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                int pId = resultSet.getInt(1);
+                String title = resultSet.getString(2);
+                String content = resultSet.getString(3);
+                String code = resultSet.getString(4);
+                String image = resultSet.getString(5);
+                Timestamp postDate = resultSet.getTimestamp(6);
+                int catId = resultSet.getInt(7);
+                int userId = resultSet.getInt(8);
+                Post post = new Post(pId,title,content,code,image,postDate,catId,userId);
+                posts.add(post);
+            }
+        }
+         catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  posts;
+    }
+
+    public List<Post> getAllPostByCatId(int cId){
+        List<Post> posts = new ArrayList<>();
+        try{
+            String query = "select * from post where catId=? order by pId desc";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,cId);
+            ResultSet resultSet = preparedStatement.executeQuery(query);
+            while(resultSet.next()){
+                int pId = resultSet.getInt(1);
+                String title = resultSet.getString(2);
+                String content = resultSet.getString(3);
+                String code = resultSet.getString(4);
+                String image = resultSet.getString(5);
+                Timestamp postDate = resultSet.getTimestamp(6);
+                int catId = resultSet.getInt(7);
+                int userId = resultSet.getInt(8);
+                Post post = new Post(pId,title,content,code,image,postDate,catId,userId);
+                posts.add(post);
+            }
+        }
+         catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  posts;
+    }
 }
