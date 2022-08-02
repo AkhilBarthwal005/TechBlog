@@ -86,7 +86,7 @@
                 $.ajax({
                     url : "signup-servlet",
                     type : "post",
-                    data : form,
+                    data : form, // we are passing form data to the signup-servlet when we click signup-from submit button.
                     success : function(data,textStatus,jqXHR){
                         console.log(data);
                     //    user has been saved successfully
