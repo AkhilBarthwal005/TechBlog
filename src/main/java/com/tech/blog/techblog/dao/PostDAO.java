@@ -65,7 +65,7 @@ public class PostDAO {
             String query = "select * from post where catId=? order by pId desc";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1,cId);
-            ResultSet resultSet = preparedStatement.executeQuery(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 int pId = resultSet.getInt(1);
                 String title = resultSet.getString(2);
