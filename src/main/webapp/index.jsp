@@ -63,38 +63,19 @@
 <%--        Fetching categories from database--%>
         <%
             CategoryDAO categoryDAO = new CategoryDAO(ConnectionProvider.getConnection());
-            List<Category> list = categoryDAO.getAllCategoryDetails();
+            List<Category> categories = categoryDAO.getAllCategoryDetails();
         %>
         <div class="row my-4">
             <%
-                for(int i=0;i<3;i++){
+                for(Category category : categories){
 
             %>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
                 <div class="card" style="width: 18rem;">
-                    <img src="./img/categoriesImages/<%=list.get(i).getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
+                    <img src="./img/categoriesImages/<%=category.getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
                     <div class="card-body">
-                        <h5 class="card-title"><%=list.get(i).getName()%></h5>
-                        <p class="card-text"><%=list.get(i).getDescription().substring(0,135)%>...</p>
-                        <a href="#" class="btn main-theme text-white">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <%
-                }
-            %>
-        </div>
-        <div class="row my-4">
-            <%
-                for(int i=3;i<list.size();i++){
-
-            %>
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="./img/categoriesImages/<%=list.get(i).getImage()%>" class="card-img-top" alt="..." height="250px" width="300px">
-                    <div class="card-body">
-                        <h5 class="card-title"><%=list.get(i).getName()%></h5>
-                        <p class="card-text"><%=list.get(i).getDescription().substring(0,150)%>...</p>
+                        <h5 class="card-title"><%=category.getName()%></h5>
+                        <p class="card-text"><%=category.getDescription().substring(0,142)%>...</p>
                         <a href="#" class="btn main-theme text-white">Read more</a>
                     </div>
                 </div>
