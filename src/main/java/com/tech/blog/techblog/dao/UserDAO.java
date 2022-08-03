@@ -106,4 +106,28 @@ public class UserDAO {
         }
         return result;
     }
+
+    public User getUserByUserId(int user_id){
+        User user = null;
+        try{
+            String query = "select * from user where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,user_id);
+            // saving user to database...
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                String userName = resultSet.getString(2);
+                String email = resultSet.getString(3);
+                String password = resultSet.getString(4);
+                String confirmPassword = resultSet.getString(5);
+                String gender = resultSet.getString(6);
+                Timestamp dateTime = resultSet.getTimestamp(7);
+                String profile = resultSet.getString(8);
+                user = new User(user_id,userName,email,password,confirmPassword,gender,dateTime,profile);
+            }
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return user;
+    }
 }
