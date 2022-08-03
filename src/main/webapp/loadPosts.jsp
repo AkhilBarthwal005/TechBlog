@@ -2,6 +2,14 @@
 <%@ page import="com.tech.blog.techblog.helper.ConnectionProvider" %>
 <%@ page import="com.tech.blog.techblog.entity.Post" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.tech.blog.techblog.entity.User" %>
+<%
+    User currentUser = (User)session.getAttribute("currentUser");
+    if(currentUser==null){
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
     <div class="row">
         <%
             PostDAO postDAO = new PostDAO(ConnectionProvider.getConnection());
@@ -25,7 +33,11 @@
                 <div class="card-body">
                     <h5 class="card-title"><%=post.getTitle()%></h5>
                     <p class="card-text"><%=post.getContent().substring(0,150)%>...</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-center main-theme">
+                    <a href="#" class="btn btn-outline-light"><span><i class="fa-solid fa-thumbs-up"></i> 10</span></a>
+                    <a href="showBlog.jsp?post_id=<%=post.getPId()%>" class="btn btn-outline-light">Read more...</a>
+                    <a href="#" class="btn btn-outline-light text-end"><span><i class="fa-solid fa-comment-dots"></i> 20</span></a>
                 </div>
             </div>
         </div>

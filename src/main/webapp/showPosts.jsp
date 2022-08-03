@@ -10,6 +10,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    User currentUser = (User)session.getAttribute("currentUser");
+    if(currentUser==null){
+        response.sendRedirect("login.jsp");
+        return;
+    }
+    int cId = Integer.parseInt(request.getParameter("cId"));
+%>
 <html>
 <head>
     <title>Posts</title>
@@ -26,6 +34,7 @@
 
 <%--        show posts--%>
         <main>
+            <input type="hidden" value="<%=cId%>" id="cId"/>
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -78,8 +87,9 @@
         }
 
         $(document).ready(function (){
-            let initialRef = $(".c-link")[0];
-            getPosts(0,initialRef);
+            let cId = $("#cId").val();
+            let initialRef = $(".c-link")[cId];
+            getPosts(cId,initialRef);
         })
     </script>
 </body>
