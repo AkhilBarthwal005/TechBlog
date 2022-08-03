@@ -76,7 +76,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%=category.getName()%></h5>
                         <p class="card-text"><%=category.getDescription().substring(0,142)%>...</p>
-                        <a href="#" class="btn main-theme text-white">Read more</a>
+                        <a href="showPosts.jsp?cId=<%=category.getCId()%>" class="btn btn-primary">Read more</a>
                     </div>
                 </div>
             </div>
