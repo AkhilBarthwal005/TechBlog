@@ -1,6 +1,7 @@
 <%@ page import="com.tech.blog.techblog.dao.PostDAO" %>
 <%@ page import="com.tech.blog.techblog.helper.ConnectionProvider" %>
-<%@ page import="com.tech.blog.techblog.entity.Post" %><%--
+<%@ page import="com.tech.blog.techblog.entity.Post" %>
+<%@ page import="com.tech.blog.techblog.dao.UserDAO" %><%--
   Created by IntelliJ IDEA.
   User: Anjali Pandey
   Date: 02-08-2022
@@ -23,36 +24,61 @@
     <title><%=post.getTitle()%></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <style>
-        .blog-theme{
-            background: url("./img/blogBG.jpg");
+        .blog-theme img{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: -1;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <%@include file="navbar.jsp"%>
-    <div class="blog-theme"></div>
+    <div class="blog-theme"><img src="./img/lightBackgroundTheme.jpg"></div>
         <div class="container">
-            <div class="text-center p-2">
+            <div class="text-center p-2 text-white">
                 <h1><%= post.getTitle()%></h1>
             </div>
-            <div>
-                <div class="text-center">
-                    <img src="./PostImages/<%=post.getImage()%>" alt="PostImage">
-                </div>
-                <div class="my-4">
-                    <p><%=post.getContent()%></p>
-                </div>
-                <%
-                    if(!post.getCode().isEmpty()){
-                %>
-                <div style="margin-left: auto; width: 45%">
-                    <pre><%=post.getCode()%></pre>
-                </div>
-                <%
-                    }
-                %>
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="text-center">
+                                <img src="./PostImages/<%=post.getImage()%>" class="img-fluid" alt="PostImage" height="500px" width="800px">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <%
+                                        UserDAO userDAO = new UserDAO(ConnectionProvider.getConnection());
+                                    %>
+                                    <h6>posted by: <span class="text-primary"><%=userDAO.getUserByUserId(post.getUserId()).getUserName()%><span></h6>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6>Posted on : <span class="text-primary"><%= post.getPostDate().toLocaleString().substring(0,11)%></span></h6>
+                                </div>
+                            </div>
+                            <div class="my-4">
+                                <p><%=post.getContent()%></p>
+                            </div>
+                            <div>
+                                <%
+                                    if(!post.getCode().isEmpty()){
+                                %>
+                                <div style="margin-left: auto; width: 70%">
+                                    <pre><%=post.getCode()%></pre>
+                                </div>
+                                <%
+                                    }
+                                %>
 
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
