@@ -3,6 +3,7 @@
 <%@ page import="com.tech.blog.techblog.entity.Post" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.tech.blog.techblog.entity.User" %>
+<%@ page import="com.tech.blog.techblog.dao.LikedDAO" %>
 <%
     User currentUser = (User)session.getAttribute("currentUser");
     if(currentUser==null){
@@ -35,7 +36,18 @@
                     <p class="card-text"><%=post.getContent().substring(0,150)%>...</p>
                 </div>
                 <div class="card-footer text-center main-theme">
-                    <a href="#" class="btn btn-outline-light"><span><i class="fa-solid fa-thumbs-up"></i> 10</span></a>
+                    <%
+                        LikedDAO likedDAO = new LikedDAO(ConnectionProvider.getConnection());
+                        if(likedDAO.isPostIsLikedByUser(post.getPId(),currentUser.getId())){
+                    %>
+                    <a href="#" class="btn btn-outline-light disabled" onclick="doLike(<%=post.getPId()%>,<%=currentUser.getId()%>)"><i class="fa-solid fa-thumbs-up"></i> <span id="likeNumber<%=post.getPId()%>"><%=likedDAO.countLikes(post.getPId())%></span></a>
+                    <%
+                        }else{
+                    %>
+                    <a href="#" class="btn btn-outline-light" id="likeButton<%=post.getPId()%>" onclick="doLike(<%=post.getPId()%>,<%=currentUser.getId()%>)"><i class="fa-solid fa-thumbs-up"></i> <span id="likeNumber<%=post.getPId()%>"><%=likedDAO.countLikes(post.getPId())%></span></a>
+                    <%
+                        }
+                    %>
                     <a href="showBlog.jsp?post_id=<%=post.getPId()%>" class="btn btn-outline-light">Read more...</a>
                     <a href="#" class="btn btn-outline-light text-end"><span><i class="fa-solid fa-comment-dots"></i> 20</span></a>
                 </div>

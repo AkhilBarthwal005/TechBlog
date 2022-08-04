@@ -50,8 +50,10 @@ public class LikedDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1,postId);
             preparedStatement.setInt(2,userId);
-            int row = preparedStatement.executeUpdate();
-            result = row !=0;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                result = true;
+            }
         }
         catch (SQLException e){
             e.printStackTrace();
